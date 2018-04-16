@@ -1,0 +1,65 @@
+  type Movies {
+    _id: String
+    title: String
+    overview: String
+    poster_path: String
+    popularity: Float
+    tag: String
+    status: String
+  }
+
+  type inputMovie {
+    title: String!
+    overview: String!
+    poster_path: String
+    popularity: Float
+    tag: String
+    status: String
+  }
+  
+  type TVSeries {
+    _id: String
+    title: String
+    overview: String
+    poster_path: String
+    popularity: Float
+    tag: [String]
+    status: String
+  }
+
+  type inputTVSeries {
+    title: String!
+    overview: String!
+    poster_path: String
+    popularity: Float
+    tag: [String]
+    status: String
+  }
+
+  type Orchestrator {
+    Movies: [Movies]
+    TVSeries: [TVSeries]
+  }
+
+  type Query {
+    fetchData: Orchestrator
+  }
+
+  type Mutation {
+    addMovie(
+      title: String!
+      overview: String!
+      poster_path: String
+      popularity: Float
+      tag: [String]
+      status: String
+    ) : Movies
+    addTVSeries(
+      title: String!
+      overview: String!
+      poster_path: String
+      popularity: Float
+      tag: [String]
+      status: String
+    ) : TVSeries
+  }

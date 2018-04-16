@@ -23,5 +23,30 @@ const addMovies = (req,res) => {
   })
 }
 
+const updateMovies = (req,res) => {
+  Movie.findOneAndUpdate({_id: req.params.id},{$set: req.body}, {new: true})
+  .then((updated) => {
+    console.log(updated)
+    res.status(201).json({
+      message: "update data success",
+      updated
+    })
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+}
 
-module.exports = { getMovies, addMovies }
+const deleteMovies = (req, res) => {
+  Movie.deleteOne({_id: req.params.id})
+  .then(() => {
+    res.status(200).json({
+      message: "delete data succeess"
+    })
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+}
+
+module.exports = { getMovies, addMovies, updateMovies }

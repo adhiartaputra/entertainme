@@ -4,11 +4,21 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const { makeExecutableSchema } = require('graphql-tools');
+const fs = require('fs')
+const cors = require('cors')
+const resolvers = require('./graphql/resolvers')
+const typeDefs = fs.readFileSync('./graphql/typeDefs.gql', 'utf-8')
 
 const index = require('./routes/index');
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+})
 
 const app = express();
-
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -22,6 +32,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/entertainme', index);
+app.use('/graphql', graphqlExpress({ schema }))
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
