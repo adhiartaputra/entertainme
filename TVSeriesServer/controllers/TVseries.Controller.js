@@ -22,4 +22,30 @@ const addTVseries = (req,res) => {
   })
 }
 
-module.exports = { getTVseries, addTVseries }
+const updateTVSeries = (req,res) => {
+  TVSeries.findOneAndUpdate({_id: req.params.id},{$set: req.body}, {new: true})
+  .then((updated) => {
+    console.log(updated)
+    res.status(201).json({
+      message: "update data success",
+      updated
+    })
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+}
+
+const deleteTVSeries = (req, res) => {
+  TVSeries.deleteOne({_id: req.params.id})
+  .then(() => {
+    res.status(200).json({
+      message: "delete data succeess"
+    })
+  })
+  .catch(err => {
+    res.status(500).send(err)
+  })
+}
+
+module.exports = { getTVseries, addTVseries, updateTVSeries, deleteTVSeries }

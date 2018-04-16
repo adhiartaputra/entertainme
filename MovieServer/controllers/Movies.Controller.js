@@ -23,7 +23,7 @@ const addMovies = (req,res) => {
   })
 }
 
-const updateMovies = (req,res) => {
+const updateMovie = (req,res) => {
   Movie.findOneAndUpdate({_id: req.params.id},{$set: req.body}, {new: true})
   .then((updated) => {
     console.log(updated)
@@ -37,7 +37,7 @@ const updateMovies = (req,res) => {
   })
 }
 
-const deleteMovies = (req, res) => {
+const deleteMovie = (req, res) => {
   Movie.deleteOne({_id: req.params.id})
   .then(() => {
     res.status(200).json({
@@ -49,4 +49,4 @@ const deleteMovies = (req, res) => {
   })
 }
 
-module.exports = { getMovies, addMovies, updateMovies }
+module.exports = { getMovies, addMovies, updateMovie, deleteMovie }
