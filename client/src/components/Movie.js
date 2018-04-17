@@ -26,10 +26,10 @@ export default class Home extends Component {
           if ( loading ) return <p> Loading sebentar ... </p>;
           if ( error ) return <p> Error bang ... </p>;
           return data.fetchData.Movies.map(({title, overview, poster_path, popularity, tag, status}, index) => 
-            <div key={ index } className="container py-5">
-              <div className="row">
-                <div className="col-sm-4">
-                  <img src={ poster_path } alt='detail' width="160" height="auto"/>
+            <div key={ index } className="container py-3">
+              <div className="row" style={{ backgroundColor:"gainsboro", padding:20 }}>
+                <div className="col-sm-4" style={{ justifyContent:'center' }}>
+                  <img src={ poster_path } alt='detail' width="100%" height="auto"/>
                 </div>
                 <div className="col-sm-8" >
                   <h2 style={{ paddingBottom:10, textAlign:'left', fontFamily:'futura' }} >{ title }</h2>
