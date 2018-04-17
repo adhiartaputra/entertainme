@@ -8,7 +8,7 @@
     status: String
   }
 
-  type inputMovie {
+  input inputMovie {
     title: String!
     overview: String!
     poster_path: String
@@ -27,7 +27,7 @@
     status: String
   }
 
-  type inputTVSeries {
+  input inputTVSeries {
     title: String!
     overview: String!
     poster_path: String
@@ -47,12 +47,13 @@
 
   type Mutation {
     addMovie(
-      title: String!
-      overview: String!
-      poster_path: String
-      popularity: Float
-      tag: [String]
-      status: String
+      # title: String!
+      # overview: String!
+      # poster_path: String
+      # popularity: Float
+      # tag: [String]
+      # status: String
+      movie: inputMovie
     ) : Movies
     addTVSeries(
       title: String!

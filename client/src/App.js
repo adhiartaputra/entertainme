@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Movie from './components/Movie'
+import AddMovie from './components/AddMovie'
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Entertain Me</h1>
         </header>
+        <AddMovie />
         <Movie />
       </div>
     );

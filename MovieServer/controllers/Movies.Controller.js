@@ -13,9 +13,10 @@ const getMovies = (req, res) => {
 
 const addMovies = (req,res) => {
   Movie.create(req.body)
-  .then(() => {
+  .then((newMovie) => {
     res.status(201).json({
-      message: "successfully add new Movie"
+      message: "successfully add new Movie",
+      newMovie
     })
   })
   .catch(err => {

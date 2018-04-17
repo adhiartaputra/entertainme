@@ -18,10 +18,10 @@ const resolver = {
   },
 
   Mutation : {
-    addMovie: async (_,args) => {
+    addMovie: async (_,{movie}) => {
       try {
-        const newMovie = await axios.post('http://localhost:3001/movies', args)
-        return newMovie.data
+        const newMovie = await axios.post('http://localhost:3001/movies', movie)
+        return newMovie.data.newMovie
       } catch (err) {
         return err
       }
@@ -29,7 +29,7 @@ const resolver = {
     addTVSeries: async (_,args) => {
       try {
         const newTVSeries = await axios.post('http://localhost:3002/tvseries', args)
-        return newTVSeries.data
+        return newTVSeries.data.data
       } catch (err) {
         return err
       }
